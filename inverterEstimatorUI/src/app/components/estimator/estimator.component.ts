@@ -35,7 +35,6 @@ export class EstimatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.createInitialForm();
-    console.log(this.estimateForm);
   }
 
   get getElectricalDevices() {
