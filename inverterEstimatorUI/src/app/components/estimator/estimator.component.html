@@ -1,0 +1,80 @@
+<div [formGroup]="estimateForm" class="estimate-form">
+
+  <div class="electrical-device-form-array" formArrayName="electricalDeviceFormArray">
+    <h3 class="electrical-device-form-sml-screen-header electrical-devices-header">Electrical Devices</h3>
+    <div class="electrical-device-form-cockpit">
+      <h3 class="electrical-devices-header">Electrical Devices</h3>
+      <button mat-raised-button color="primary" class="addDeviceButton" (click)="addElectricalDeviceFormGroup()">
+        <mat-icon>add</mat-icon>
+        Add Device
+      </button>
+    </div>
+    <ng-container *ngFor="let device of getElectricalDevices['controls']; let i = index">
+      <div class="electrical-device" [formGroupName]="i">
+        <div class="remove-device-btn" (click)="removeDevice(i)">
+          <button mat-mini-fab color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <mat-form-field class="device-control device-name">
+          <mat-label>Device Name</mat-label>
+          <input matInput placeholder="TV" value="" type="text" formControlName="deviceName">
+          <mat-error>Enter a device name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="device-control">
+          <mat-label>Wattage</mat-label>
+          <input matInput placeholder="100" value="" type="text" formControlName="wattage">
+          <mat-error>Enter a valid number</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="device-control">
+          <mat-label>Quantity</mat-label>
+          <input matInput placeholder="2" value="" type="text" formControlName="quantity">
+          <mat-error>Enter a valid number</mat-error>
+        </mat-form-field>
+
+      </div>
+    </ng-container>
+  </div>
+  <div class="electrical-device-form-cockpit-sml-screen electrical-device-form-cockpit">
+    <button mat-raised-button color="primary" class="addDeviceButton" (click)="addElectricalDeviceFormGroup()">
+      <mat-icon>add</mat-icon>
+      Add Device
+    </button>
+  </div>
+
+  <div class="power-details-section">
+    <mat-form-field class="">
+      <mat-label>Power Factor</mat-label>
+      <input matInput placeholder="0.8" value="" type="text" formControlName="powerFactor">
+      <mat-error>Enter a valid power factor between 0 - 1</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="">
+      <mat-label>Battery Amp Hours</mat-label>
+      <input matInput placeholder="2" value="" type="text" formControlName="batteryAmpHours">
+      <mat-error>Enter a valid number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Battery Voltage</mat-label>
+      <mat-select formControlName="batteryVoltage">
+        <mat-option *ngFor="let voltage of batteryVoltageOptions" [value]="voltage">
+          {{voltage}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Select a valid battery voltage</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="">
+      <mat-label>Number of Batteries</mat-label>
+      <input matInput placeholder="2" value="" type="text" formControlName="numberOfBatteries">
+      <mat-error>Enter a valid number</mat-error>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" class="summary-btn" [disabled]="estimateForm.invalid" (click)="getSummary()">Summary</button>
+</div>
+
+

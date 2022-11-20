@@ -1,0 +1,37 @@
+<div class="final-estimates">
+  <h3>Displaying inverter size estimates based on the following information:</h3>
+  <p>Devices that will be connected to the inverter:</p>
+    <div class="table-container">
+      <table mat-table [dataSource]="data['electricalDevices']" class="mat-elevation-z8 device-table">
+        <ng-container matColumnDef="deviceName">
+          <th mat-header-cell *matHeaderCellDef> Device Name </th>
+          <td mat-cell *matCellDef="let element"> {{element['deviceName']}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="wattage">
+          <th mat-header-cell *matHeaderCellDef> Wattage </th>
+          <td mat-cell *matCellDef="let element"> {{element['wattage']}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+          <td mat-cell *matCellDef="let element"> {{element['quantity']}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+     <p>Power Factor: {{data['powerFactor']}}</p>
+     <p>Total Wattage:  {{data['totalLoadInWatts']}}</p>
+     <p>Total KiloWatts: {{data['totalLoadInKiloWatts']}}</p>
+     <hr>
+     <p>Estimated required inverter size (KVA): {{data['powerInKVA']}}</p>
+     <p>Estimated battery backup time: {{data['batteryBackupTime']}}</p>
+</div>
